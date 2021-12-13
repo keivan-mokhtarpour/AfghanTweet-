@@ -1,0 +1,17 @@
+select username from twitterafghan;
+
+CREATE EXTERNAL TABLE IF NOT EXISTS twitterafghan.twitterafghan5 (
+  `username` string,
+  `tweet` string,
+  `followers` int,
+  `location` string,
+  `geo` string,
+  `created` string,
+  `prediction` int 
+)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe'
+WITH SERDEPROPERTIES (
+  'serialization.format' = ',',
+  'field.delim' = ','
+) LOCATION 's3://maddy-big-data-bucket/twitter2/2021/08/twitter_sentiment_prediction3/'
+TBLPROPERTIES ('has_encrypted_data'='false');
